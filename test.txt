@@ -1,0 +1,2 @@
+test_user = User(fname='John', lname='James',email='John.james@gmail.com',password='secret')
+test_cat = Category(category_name='eating out')
