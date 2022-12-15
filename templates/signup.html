@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Easy Money!{% endblock %}
+   
+
+{% block content %}
+<h1>Here is the sign up page</h1>
+
+<form action="/do-signup" method="POST">
+    <label for="fname">First Name</label>
+    <input type="text" name="first_name" id="fname">
+    <br>
+    <label for="lname">Last Name</label>
+    <input type="text" name="last_name" id="lname">
+    <br>
+    <label for="user_email">Email</label>
+    <input type="text" name="email" id="user_email">
+    <br>
+    <label for="user_password">Password</label>
+    <input type="text" name="password" id="user_password">
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

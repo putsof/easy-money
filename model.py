@@ -4,12 +4,14 @@ db = SQLAlchemy() # create sqlalchemy instance
 # assosiation tables for the many to many relationshipts
 users_budgets = db.Table(
     "users_budgets",
+    db.Column("users_budgets_id", db.Integer, primary_key=True, autoincrement=True),
     db.Column("user_id", db.ForeignKey("users.user_id")),
     db.Column("budget_id", db.ForeignKey("budgets.budget_id"))
 )
 
 budgets_categories = db.Table(
     "budgets_categories",
+    db.Column("budgets_categories_id", db.Integer, primary_key=True, autoincrement=True),
     db.Column("category_id", db.ForeignKey("categories.category_id")),
     db.Column("budget_id", db.ForeignKey("budgets.budget_id"))
 )
@@ -23,7 +25,9 @@ class User(db.Model):
     lname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=False)
     password = db.Column(db.String(64), nullable=False)
+    access_token = db.Column(db.String(64), nullable=True)
     partner_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=True) # is the partners user id
+
 
     # relationships
     partner = db.relationship("User")
@@ -80,7 +84,7 @@ class Budget(db.Model):
     def __repr__(self):
         return f'<Budget budget_id={self.budget_id} category_name={self.category_name} max_amount={self.max_amount}>'
 
-def connect_to_db(flask_app, db_uri="postgresql:///easy", echo=True):
+def connect_to_db(flask_app, db_uri=f'postgresql:///easy', echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -92,19 +96,7 @@ def connect_to_db(flask_app, db_uri="postgresql:///easy", echo=True):
 
 if __name__ == "__main__":
     from server import app
-
+    connect_to_db(app)
     # Call connect_to_db(app, echo=False) if your program output gets
     # too annoying; this will tell SQLAlchemy not to print out every
     # query it executes.
-
-    connect_to_db(app)
-
-# class User_Budget(db.Model):
-#     """User and Budget Association table"""
-#     __tablename__ = "user_budgets"
-
-#     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id",nullable=False))
-#     budget_id = db.Column(db.Integer, db.ForeignKey("budgets.budget_id",nullable=False))
-
-#     def __repr__(self):
-#         return f'<User_Budget user_id={self.user_id} budget_id={self.budget_id}>'

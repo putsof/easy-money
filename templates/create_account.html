@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Easy Money!{% endblock %}
+   
+
+{% block content %}
+<h1>Click the button below to simulate generating an access token</h1>
+<form action="/dashboard" method="POST">
+    <select name="bankname" id="name-select">
+        {% for bank in bank_names %}
+            <option value="{{ bank }}">{{ bank }}</option>
+        {% endfor %}    
+    </select>
+    <button type="submit">Sign Up</button>
+</form>
+{% endblock %}
