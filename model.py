@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 db = SQLAlchemy() # create sqlalchemy instance 
 
 # assosiation tables for the many to many relationshipts
@@ -42,9 +43,10 @@ class Transaction(db.Model):
 
     transaction_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    bank_name = db.Column(db.String(64), nullable=False)
-    vendor = db.Column(db.String(64), nullable=False)
-    amount = db.Column(db.Numeric(6,2), nullable=False) 
+    account_id = db.Column(db.String(64), nullable=False)
+    merchant_name = db.Column(db.String(64), nullable=True)
+    amount = db.Column(db.Numeric(6,2), nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.category_id"), nullable=True)
 
     # relationships

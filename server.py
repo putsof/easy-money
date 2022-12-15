@@ -3,8 +3,8 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, flash
 from model import Transaction, Budget, Category, User, connect_to_db, db
 from flask_sqlalchemy import SQLAlchemy
-from seed_database import generate_access_token
-from crud import get_user_by_id, get_user_by_email, update_access_token, create_user
+from seed_database import generate_access_token, get_api_data
+from crud import get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions
 
 app = Flask(__name__)
 app.secret_key = 'big secret'
@@ -34,6 +34,7 @@ def do_signup():
                 lname=request.form['last_name'],
                 email=request.form['email'],
                 password=request.form['password'])
+    
     
     user = get_user_by_email(request.form['email']) # get the user object
     session['user_id'] = user.user_id  # add user id to session
@@ -65,15 +66,16 @@ def dashboard():
     acc_tok = generate_access_token(BANK_ID[request.form['bankname']]) # generate the access token for the new user
     update_access_token(session['user_id'], acc_tok) # add token to User
     # get new transactions from api
-    # store as list
-
+    response_data = get_api_data(acc_tok) # for some reason data only comes thorugh on the second call. so first call to get it out of the way
+    while len(response_data['added']) < 1:
+        response_data = get_api_data(acc_tok)
+     
+    add_transactions(session['user_id'],response_data) # add the response to the database
+    # query the database and display the data
+    data = get_all_user_transactions(session['user_id'])
     # pass to html and use react to display
-    return render_template("test.html", acc_tok=acc_tok)
-# @app.route("/test")
-# def test():
-#     """ test various outputs during development"""
-#     data = db.session.query(User).filter_by(email=request.form['email']).first()
-#     return render_template("test.html",data=data)
+    return render_template("test.html", acc_tok=data)
+
 
 if __name__ == "__main__":
     connect_to_db(app)

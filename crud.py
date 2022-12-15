@@ -3,11 +3,14 @@ from model import User, Transaction, Category, Budget, connect_to_db, db
 def create_user(fname,lname,email,password):
     user = User(fname=fname,lname=lname,email=email,password=password)
     db.session.add(user) 
-    db.session.commmit()
+    db.session.commit()
     return user
     
-def create_transaction(user_id,bank_name,vendor,amount):
-    return Transaction(user_id=user_id,bank_name=bank_name,vendor=vendor,amount=amount)
+def create_transaction(user_id,account_id,merchant_name,amount,date):
+    trans = Transaction(user_id=user_id,account_id=account_id,merchant_name=merchant_name,amount=amount,date=date)
+    db.session.add(trans)
+    db.session.commit()
+    return trans
 
 def create_category(category_id,category_name):
     return Category(category_id=category_id,category_name=category_name)
@@ -29,6 +32,23 @@ def update_access_token(user_id, access_token):
     user = get_user_by_id(user_id)
     user.access_token = access_token
     db.session.commit()
+    # in the future lets check that the commit was successful
+
+def add_transactions(user_id, response):
+    for trans_action in response['added']:
+        create_transaction(user_id=user_id,
+                            account_id=trans_action['account_id'],
+                            merchant_name=trans_action['merchant_name'],
+                            amount=trans_action['amount'],
+                            date=trans_action['date'])
+
+def get_all_user_transactions(user_id):
+    """Get all transactions from a user
+    TODO - add ability to get from a certain date"""
+    return Transaction.query.filter_by(user_id=user_id).all()
+
+
+
     
     
 
