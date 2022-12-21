@@ -36,16 +36,37 @@ def update_access_token(user_id, access_token):
 
 def add_transactions(user_id, response):
     for trans_action in response['added']:
-        create_transaction(user_id=user_id,
-                            account_id=trans_action['account_id'],
-                            merchant_name=trans_action['merchant_name'],
-                            amount=trans_action['amount'],
-                            date=trans_action['date'])
+        if trans_action['merchant_name'] is None or trans_action['merchant_name'] == "":
+            create_transaction(user_id=user_id,
+                                account_id=trans_action['account_id'],
+                                merchant_name=trans_action['name'],
+                                amount=trans_action['amount'],
+                                date=trans_action['date'])
+        else:
+            create_transaction(user_id=user_id,
+                                account_id=trans_action['account_id'],
+                                merchant_name=trans_action['merchant_name'],
+                                amount=trans_action['amount'],
+                                date=trans_action['date'])
 
 def get_all_user_transactions(user_id):
     """Get all transactions from a user
     TODO - add ability to get from a certain date"""
     return Transaction.query.filter_by(user_id=user_id).all()
+
+def get_all_user_transactions_json(user_id):
+    trans_list = Transaction.query.filter_by(user_id=user_id).all()
+    list_of_dicts = []
+
+    for transaction in trans_list:
+        trans_dict = {
+                "trans_id": transaction.transaction_id,
+                "merchant_name": transaction.merchant_name,
+                "amount": str(transaction.amount),
+                "date": transaction.date
+        }
+        list_of_dicts.append(trans_dict)
+    return list_of_dicts
 
 
 

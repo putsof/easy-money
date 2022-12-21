@@ -2,10 +2,26 @@
 <html>
     <head>
         <title>{% block title %}TITLE HERE{% endblock %}</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+	    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <!-- DnD links -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dnd/16.0.1/index.min.js" crossorigin></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dnd/16.0.1/core/DndContext.min.js" crossorigin></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dnd/16.0.1/core/DndProvider.min.js" crossorigin></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dnd/16.0.1/core/DragPreviewImage.min.js" crossorigin></script> -->
+    
+
+
+
+        {% block js %}
+        {% endblock %}
+
     </head>
     <body>
-        <div class="container">
-            {% block content %}CONTENT HERE{% endblock %}
-        </div>
+        {% block content %}CONTENT HERE
+        {% endblock %}
     </body>
 </html>

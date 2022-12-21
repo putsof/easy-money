@@ -4,7 +4,8 @@ from flask import Flask, render_template, request, jsonify, session, redirect, f
 from model import Transaction, Budget, Category, User, connect_to_db, db
 from flask_sqlalchemy import SQLAlchemy
 from seed_database import generate_access_token, get_api_data
-from crud import get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions
+from crud import get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json
+import json
 
 app = Flask(__name__)
 app.secret_key = 'big secret'
@@ -74,7 +75,20 @@ def dashboard():
     # query the database and display the data
     data = get_all_user_transactions(session['user_id'])
     # pass to html and use react to display
-    return render_template("test.html", acc_tok=data)
+    
+    return render_template("dashboard.html", acc_tok=data)
+
+@app.route("/react")
+def react():
+    data = get_all_user_transactions_json(session['user_id'])
+    return render_template("react.html", data=jsonify(data))
+
+@app.route("/transaction.json")
+def transaction():
+    # i want the merchant name and amount
+    trans_list = get_all_user_transactions_json(session['user_id'])
+
+    return jsonify(trans_list) #render_template("json-test.html", data=trans_list)
 
 
 if __name__ == "__main__":
