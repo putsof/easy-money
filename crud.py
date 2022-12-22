@@ -12,11 +12,17 @@ def create_transaction(user_id,account_id,merchant_name,amount,date):
     db.session.commit()
     return trans
 
-def create_category(category_id,category_name):
-    return Category(category_id=category_id,category_name=category_name)
+def create_category(category_name):
+    cat = Category(category_name=category_name)
+    db.session.add(cat)
+    db.session.commit()
+    return cat
 
 def create_budget(max_amount,category_id,shared):
-    return Budget(max_amount=max_amount,category_id=category_id,shared=shared)
+    bud = Budget(max_amount=max_amount,category_id=category_id,shared=shared)
+    db.session.add(bud)
+    db.session.commit()
+    return bud
 
 def get_user_by_id(user_id):
     """Return user from primary key"""
@@ -67,11 +73,6 @@ def get_all_user_transactions_json(user_id):
         }
         list_of_dicts.append(trans_dict)
     return list_of_dicts
-
-
-
-    
-    
 
 
 

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block js %}
+{% endblock %}
+
+{% block content %}
+<h1>Create budget categories and assign an amount to them</h1>
+<form action="/do-create-budgets" method="POST">
+    <label for="category">Category</label>
+    <input type="text" id="category" name="category_one" >
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" name="amount_one">
+    <br>
+    <label for="category">Category</label>
+    <input type="text" id="category" name="category_two" >
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" name="amount_two">
+    <br>
+    <label for="category">Category</label>
+    <input type="text" id="category" name="category_three" >
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" name="amount_three">
+    <br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
