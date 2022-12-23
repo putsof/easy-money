@@ -12,8 +12,11 @@ def create_transaction(user_id,account_id,merchant_name,amount,date):
     db.session.commit()
     return trans
 
-def create_category(category_name):
-    cat = Category(category_name=category_name)
+def create_category(category_name,user_id,max_amount,shared_id=""):
+    cat = Category(category_name=category_name,
+                    user_id=user_id,
+                    max_amount=max_amount,
+                    shared_id="")
     db.session.add(cat)
     db.session.commit()
     return cat
@@ -74,6 +77,18 @@ def get_all_user_transactions_json(user_id):
         list_of_dicts.append(trans_dict)
     return list_of_dicts
 
+def get_all_user_categories(user_id):
+    cat_list = Category.query.filter_by(user_id=user_id).all()
+    list_of_categories = []
+
+    for category in cat_list:
+        cat_dict = {
+            "category_id": category.category_id,
+            "category_name": category.category_name,
+            "max_amount": str(category.max_amount),
+        }
+        list_of_categories.append(cat_dict)
+    return list_of_categories
 
 
 if __name__ == '__main__':

@@ -1,31 +1,16 @@
 {% extends 'base.html' %}
 
 {% block js %}
+<script src="/static/javadnd.js"></script>
+<script src="/static/create_cat_boxes.js"></script>
 <script src="/static/create_trans.js"></script>
-<script src="/static/javadnd.js" async></script>
+
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="budget-bucket">
-        <h1 id="column-title">All Transactions</h1>
-
-        <!-- <div class="trans-card" draggable="true">
-            <h4>Merchant Name</h4> 
-            <h4>$100</h4>
-            <h4>12/5/12</h4>
-        </div> -->
-
-    </div>
-
-    <div id ="next" class="budget-bucket">
-        <h1>Eating Out</h1>
-    </div>
-
-    <div class="budget-bucket">
-        <h1>Housing Expenses</h1>
-    </div>
-
+<div id="container">
+    <div class="category-bucket" id="all-transactions">
+        <h1 id="category-name">All Transactions</h1>
 </div>
 {% endblock %}
 

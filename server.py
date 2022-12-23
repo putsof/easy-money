@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify, session, redirect, f
 from model import Transaction, Budget, Category, User, connect_to_db, db
 from flask_sqlalchemy import SQLAlchemy
 from seed_database import generate_access_token, get_api_data
-from crud import get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json, create_budget, create_category
+from crud import get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json, create_budget, create_category, get_all_user_categories
 import json
 
 app = Flask(__name__)
@@ -57,20 +57,18 @@ def do_signup():
 @app.route("/do-create-budgets", methods=['POST'])
 def do_create_budgets():
     # first create category
-    cat1 = create_category(category_name=request.form["category_one"])
-    bud1 = create_budget(max_amount=request.form["amount_one"],
-                        category_id=cat1.category_id,
-                        shared=False)
+    cat1 = create_category(category_name=request.form["category_one"],
+                           max_amount=request.form["amount_one"],
+                           user_id=session['user_id'])
     
-    cat2 = create_category(category_name=request.form["category_two"])
-    bud2 = create_budget(max_amount=request.form["amount_two"],
-                        category_id=cat2.category_id,
-                        shared=False)
+    cat2 = create_category(category_name=request.form["category_two"],
+                           max_amount=request.form["amount_two"],
+                           user_id=session['user_id'])
     
-    cat3 = create_category(category_name=request.form["category_three"])
-    bud3 = create_budget(max_amount=request.form["amount_three"],
-                        category_id=cat3.category_id,
-                        shared=False)
+    cat3 = create_category(category_name=request.form["category_three"],
+                           max_amount=request.form["amount_three"],
+                           user_id=session['user_id'])
+  
     return render_template("create_account.html", bank_names=BANK_ID.keys())
 
 @app.route("/create-account", methods=['POST'])
@@ -101,7 +99,7 @@ def transaction():
 @app.route("/categories.json")
 def categories():
     # i want all the categories associated with the user
-    trans_list = get_all_user_transactions_json(session['user_id'])
+    cat_list = get_all_user_categories(session['user_id'])
     return jsonify(cat_list)
 
 @app.route("/javadnd")

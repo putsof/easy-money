@@ -1,4 +1,3 @@
-console.log("im running?")
 document.addEventListener("DOMContentLoaded", showTransaction());
 function showTransaction(){
     fetch('/transaction.json')
@@ -21,14 +20,11 @@ function showTransaction(){
                 newDiv.appendChild(amountH4);
                 newDiv.appendChild(dateH4);
 
-                const refElement = document.getElementById("column-title");
-                //get refElement parent element
-                const parentDiv = refElement.parentNode;
-                parentDiv.insertBefore(newDiv, refElement.nextSibling)
-            
+                newDiv.addEventListener('dragstart', dragStart);
+                newDiv.addEventListener('dragend', dragEnd);
+
+                const refElement = document.getElementById("all-transactions");
+                refElement.appendChild(newDiv)
             });
     })
 }
-
-//showTransaction(); //run the function to get the data
-//TODO figure out how to run this on page load

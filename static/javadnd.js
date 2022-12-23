@@ -1,10 +1,3 @@
-
-console.log("is this running")
-// get all elements that we  want to implement drag and drop on
-// draggable for trans card and droppable for budget bucket
-const trans_card = document.querySelectorAll(".trans-card") 
-const budget_bucket = document.querySelectorAll('.budget-bucket')
-
 //variable to keep track of the current dragged item and do things to it
 let draggedItem = null;
 
@@ -34,22 +27,23 @@ function dragLeave() {
 }
 function dragDrop() {
     console.log('drag dropped');
+    console.log(this)
     this.append(draggedItem); //add to the budget bucket it was dropped in
 }
 // end functions for drop zones
 
 //add an eventlistener to each trans card
 //one for the drag event start and the other for the drag end
-trans_card.forEach(
-    trans => {
-        trans.addEventListener('dragstart', dragStart);
-        trans.addEventListener('dragend', dragEnd);
-    });
+// trans_card.forEach(
+//     trans => {
+//         trans.addEventListener('dragstart', dragStart);
+//         trans.addEventListener('dragend', dragEnd);
+//     });
 
-budget_bucket.forEach(
-    bucket =>{
-        bucket.addEventListener('dragover', dragOver);
-        bucket.addEventListener('dragenter', dragEnter);
-        bucket.addEventListener('dragleave', dragLeave);
-        bucket.addEventListener('drop', dragDrop);
-    });
+// category_bucket.forEach(
+//     bucket =>{
+//         bucket.addEventListener('dragover', dragOver);
+//         bucket.addEventListener('dragenter', dragEnter);
+//         bucket.addEventListener('dragleave', dragLeave);
+//         bucket.addEventListener('drop', dragDrop);
+//     });

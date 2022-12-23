@@ -1,12 +1,32 @@
+this is holding javadnd previous iteration
+
 {% extends 'base.html' %}
 
-{% block title %}Welcome to Easy Money!{% endblock %}
-   
+{% block js %}
+<script src="/static/create_trans.js"></script>
+<script src="/static/javadnd.js" async></script>
+{% endblock %}
 
 {% block content %}
-    <h1>Here is test data</h1>
+<div class="container">
+    <div class="category-bucket">
+        <h1 id="category-name">All Transactions</h1>
 
-    
-    <p>{{ acc_tok }}</p>
+        <!-- <div class="trans-card" draggable="true">
+            <h4>Merchant Name</h4> 
+            <h4>$100</h4>
+            <h4>12/5/12</h4>
+        </div> -->
 
+    </div>
+
+    <div id ="next" class="budget-bucket">
+        <h1>Eating Out</h1>
+    </div>
+
+    <div class="budget-bucket">
+        <h1>Housing Expenses</h1>
+    </div>
+
+</div>
 {% endblock %}

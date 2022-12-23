@@ -60,7 +60,10 @@ class Category(db.Model):
     __tablename__ = "categories"
 
     category_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     category_name = db.Column(db.String(64), nullable=False)
+    max_amount = db.Column(db.Numeric(6,2), nullable=False)
+    shared_id = db.Column(db.String(64), nullable=True)
 
     # relationships
     transactions = db.relationship("Transaction", back_populates="category") # one to one

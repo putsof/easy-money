@@ -1,17 +1,17 @@
-.container{
+#container{
     font-family: "Trebuchet MS", sans-serif;
     display: flex;
     gap: 30px;
 }
   
-.budget-bucket{
+.category-bucket{
     flex-basis: 20%;
     background: rgb(132, 175, 221);
     min-height: 90vh;
     padding: 20px;
     border-radius: 10px;
 }
-.budget-bucket h1{
+.category-bucket h1{
     text-align: center;
     font-size: 22px;
     font-style: "Baskerville Roman";
