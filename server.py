@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify, session, redirect, f
 from model import Transaction, Budget, Category, User, connect_to_db, db
 from flask_sqlalchemy import SQLAlchemy
 from seed_database import generate_access_token, get_api_data
-from crud import get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json, create_budget, create_category, get_all_user_categories
+from crud import  get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json, create_budget, create_category, get_all_user_categories, update_transaction_category
 import json
 
 app = Flask(__name__)
@@ -56,17 +56,9 @@ def do_signup():
 
 @app.route("/do-create-budgets", methods=['POST'])
 def do_create_budgets():
-    # first create category
-    cat1 = create_category(category_name=request.form["category_one"],
-                           max_amount=request.form["amount_one"],
-                           user_id=session['user_id'])
-    
-    cat2 = create_category(category_name=request.form["category_two"],
-                           max_amount=request.form["amount_two"],
-                           user_id=session['user_id'])
-    
-    cat3 = create_category(category_name=request.form["category_three"],
-                           max_amount=request.form["amount_three"],
+    for count in range(int(len(request.form)/2)):
+        create_category(category_name=request.form["category" + str(count)],
+                           max_amount=request.form["amount" + str(count)],
                            user_id=session['user_id'])
   
     return render_template("create_account.html", bank_names=BANK_ID.keys())
@@ -74,7 +66,6 @@ def do_create_budgets():
 @app.route("/create-account", methods=['POST'])
 def create_account():
     return render_template("javadnd.html")
-
 
 
 @app.route("/dashboard", methods=['POST'])
@@ -110,8 +101,15 @@ def javadnd():
 def create_budgets():
     return render_template("create_budget.html")
 
-
-
+@app.route("/update-trans-cat.json", methods=['POST'])
+def update_trans_cat():
+    trans_id = request.json.get('trans_id')
+    
+    category_name = request.json.get('category_name')
+    print("here is the trans id " + category_name)
+    update_transaction_category(session['user_id'],int(trans_id),category_name)
+    
+    return jsonify({'status': 'okay'})
 
 
 

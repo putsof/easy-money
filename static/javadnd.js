@@ -9,7 +9,6 @@ function dragStart(){
 
 function dragEnd(){
     console.log('drag ended');
-    this.className = 'trans-card'
     draggedItem = null; // set back to null when the item is released
 }
 // end drggables functions
@@ -26,11 +25,35 @@ function dragLeave() {
     console.log('drag left');
 }
 function dragDrop() {
+    // here THIS is the column
     console.log('drag dropped');
-    console.log(this)
+    const transInfo = {
+        trans_id: draggedItem.id,
+        category_name: this.innerText, 
+    };
+    fetch('/update-trans-cat.json', {
+        method: 'POST',
+        body: JSON.stringify(transInfo),
+        headers: {
+            'Content-Type': 'application/json',
+          },
+    })
+    .then((response) => response.json())
+    .then();
     this.append(draggedItem); //add to the budget bucket it was dropped in
 }
 // end functions for drop zones
+
+//function to send data back
+// function sendCatInfo(evt) {
+//     evt.preventDefault();
+//     const transInfo = {
+//         transId = 
+//     }
+
+
+// }
+
 
 //add an eventlistener to each trans card
 //one for the drag event start and the other for the drag end

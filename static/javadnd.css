@@ -29,3 +29,11 @@
 .invisible{
     display: none;
 }
+
+.header {
+    padding: 1px;
+    text-align: center;
+    background: #2ca7ba;
+    color: white;
+    font-size: 30px;
+  }

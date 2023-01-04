@@ -90,6 +90,12 @@ def get_all_user_categories(user_id):
         list_of_categories.append(cat_dict)
     return list_of_categories
 
+def update_transaction_category(user_id, trans_id,cat_name):
+    trans = Transaction.query.filter_by(transaction_id=trans_id).first() # get the correct transaction
+    cat_id = Category.query.filter_by(user_id=user_id, category_name=cat_name).first() # get the cat id for the given name
+    trans.category_id = cat_id.category_id # update the transaction category id
+    db.session.commit()
+    return None
 
 if __name__ == '__main__':
     from server import app

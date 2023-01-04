@@ -13,12 +13,16 @@ function showTransaction(){
                 nameH4.innerHTML = dict["merchant_name"];
                 const amountH4 = document.createElement("h4");
                 amountH4.innerHTML = dict["amount"];
-                const dateH4 =document.createElement("h4");
+                const dateH4 = document.createElement("h4");
                 dateH4.innerHTML = dict["date"];
+                const transidH5 = document.createElement("h5");
+                newDiv.id=dict["trans_id"]
+                transidH5.innerHTML = dict["trans_id"];
 
                 newDiv.appendChild(nameH4);
                 newDiv.appendChild(amountH4);
                 newDiv.appendChild(dateH4);
+                newDiv.appendChild(transidH5);
 
                 newDiv.addEventListener('dragstart', dragStart);
                 newDiv.addEventListener('dragend', dragEnd);

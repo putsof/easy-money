@@ -8,7 +8,7 @@ function showCategory(){
                 const newDiv = document.createElement("div");
                 newDiv.className ="category-bucket";
                 const nameH1 = document.createElement("h1");
-                nameH1.id ="category-name"
+                nameH1.id ="category-name";
                 nameH1.innerHTML = dict["category_name"];
             
                 newDiv.appendChild(nameH1);

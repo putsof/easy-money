@@ -1,26 +1,25 @@
 {% extends 'base.html' %}
 
 {% block js %}
+<script defer src="/static/create_budget.js"></script>
 {% endblock %}
 
 {% block content %}
 <h1>Create budget categories and assign an amount to them</h1>
-<form action="/do-create-budgets" method="POST">
-    <label for="category">Category</label>
-    <input type="text" id="category" name="category_one" >
-    <label for="amount">Amount</label>
-    <input type="number" id="amount" name="amount_one">
+<form id="cat_form" action="/do-create-budgets" method="POST">
+    <div id="inputs">
+        <span class="category_name">
+            <label for="category0"></label>
+            <input type="text" id="category0" name="category0" placeholder="Category">
+        </span>
+        <span class="category_amount">
+            <label for="amount0"></label>
+            <input type="number" id="amount0" name="amount0" placeholder="Amount">
+        </span>
+        <br>
+    </div>
     <br>
-    <label for="category">Category</label>
-    <input type="text" id="category" name="category_two" >
-    <label for="amount">Amount</label>
-    <input type="number" id="amount" name="amount_two">
-    <br>
-    <label for="category">Category</label>
-    <input type="text" id="category" name="category_three" >
-    <label for="amount">Amount</label>
-    <input type="number" id="amount" name="amount_three">
-    <br>
+    <button type="button", name="adder", id="add_cat">Add Category</button>
     <button type="submit">Submit</button>
 </form>
 {% endblock %}
