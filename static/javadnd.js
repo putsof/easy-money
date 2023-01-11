@@ -1,4 +1,4 @@
-//variable to keep track of the current dragged item and do things to it
+//variable to keep track of the current dragged item and access its info
 let draggedItem = null;
 
 // funtions for the draggables ie. trans-card
@@ -38,35 +38,7 @@ function dragDrop() {
             'Content-Type': 'application/json',
           },
     })
-    .then((response) => response.json())
-    .then();
+    .then((response) => response.json());
+    //.then();
     this.append(draggedItem); //add to the budget bucket it was dropped in
 }
-// end functions for drop zones
-
-//function to send data back
-// function sendCatInfo(evt) {
-//     evt.preventDefault();
-//     const transInfo = {
-//         transId = 
-//     }
-
-
-// }
-
-
-//add an eventlistener to each trans card
-//one for the drag event start and the other for the drag end
-// trans_card.forEach(
-//     trans => {
-//         trans.addEventListener('dragstart', dragStart);
-//         trans.addEventListener('dragend', dragEnd);
-//     });
-
-// category_bucket.forEach(
-//     bucket =>{
-//         bucket.addEventListener('dragover', dragOver);
-//         bucket.addEventListener('dragenter', dragEnter);
-//         bucket.addEventListener('dragleave', dragLeave);
-//         bucket.addEventListener('drop', dragDrop);
-//     });

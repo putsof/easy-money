@@ -1,4 +1,6 @@
 from model import User, Transaction, Category, Budget, connect_to_db, db
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm.exc import MultipleResultsFound
 
 def create_user(fname,lname,email,password):
     user = User(fname=fname,lname=lname,email=email,password=password)
@@ -28,13 +30,26 @@ def create_budget(max_amount,category_id,shared):
     return bud
 
 def get_user_by_id(user_id):
-    """Return user from primary key"""
+    """Return user by primary key"""
     return User.query.get(user_id)
 
 def get_user_by_email(email):
     """Return user from email"""
-    return User.query.filter_by(email=email).one() # this will fail if there is more than one
-    # so maybe need some error handling here
+    try: 
+        user = User.query.filter_by(email=email).one() # this will fail if there is more than one
+        return user
+    except NoResultFound:
+        return None
+
+def check_user_password_by_email(email,password):
+    """Check if the password provided for the given email is correct"""
+    user = get_user_by_email(email)
+    if user.password == password:
+        return True
+    else:
+        return False
+    
+
 
 def update_access_token(user_id, access_token):
     """Update the users access token in the database"""
@@ -96,6 +111,8 @@ def update_transaction_category(user_id, trans_id,cat_name):
     trans.category_id = cat_id.category_id # update the transaction category id
     db.session.commit()
     return None
+
+
 
 if __name__ == '__main__':
     from server import app

@@ -4,7 +4,7 @@ addBtn.addEventListener('click', createFormInputs);
 
 let numOfCats = 0;
 function createFormInputs() {
-    console.log("i am running")
+   
     numOfCats++;
 
     // creating span for the category name

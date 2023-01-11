@@ -2,17 +2,33 @@
 
 {% block title %}Welcome to Easy Money!{% endblock %}
    
+{% block js %}
+<script defer src="/static/login.js"></script>ß
+{% endblock %}
 
 {% block content %}
-    <h1>Login Here</h1>
-    <form action="/do-login" method="POST">
-        <label for="user_email">Email</label>
-        <input type="text" name="email" id="user_email">
-        <br>
-        <label for="user_password">Password</label>
-        <input type="text" name="password" id="user_password">
-    
-        <button type="submit">Submit</button>
-    </form>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card text-white" style="border-radius: 1rem; background-color: #024080;">
+                    <div class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+                        <h1>Login Here</h1>
+                        <form id="login-form" action="/do-login" method="POST">
+                            <label for="user_email">Email</label>
+                            <input type="text" name="email" id="user_email" class="form-control" required>
+                            <br>
+                            <label for="user_password">Password</label>
+                            <input type="password" name="password" id="user_password" class="login-form-field" required>
+                            <button type="submit" id="login-form-submit">Submit</button>
+                        </form>
+                    </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

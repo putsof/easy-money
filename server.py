@@ -1,11 +1,10 @@
 """Server for easy money"""
 
 from flask import Flask, render_template, request, jsonify, session, redirect, flash
-from model import Transaction, Budget, Category, User, connect_to_db, db
+from model import connect_to_db, db
 from flask_sqlalchemy import SQLAlchemy
 from seed_database import generate_access_token, get_api_data
-from crud import  get_user_by_id, get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json, create_budget, create_category, get_all_user_categories, update_transaction_category
-import json
+from crud import get_user_by_email, update_access_token, create_user,add_transactions,get_all_user_transactions, get_all_user_transactions_json, create_budget, create_category, get_all_user_categories, update_transaction_category, check_user_password_by_email
 
 app = Flask(__name__)
 app.secret_key = 'big secret'
@@ -22,15 +21,15 @@ def welcome():
     """Displays the Welcome page"""
     return render_template("welcome.html")
 
-@app.route("/login")
-def login():
-    """Displayes the Login page"""
-    return render_template("login.html")
-
 @app.route("/signup")
 def signup():
     """Displays the Sign Up page"""
     return render_template("signup.html")  
+
+@app.route("/login")
+def login():
+    """Displayes the Login page"""
+    return render_template("login.html")
 
 @app.route("/do-login", methods=['POST'])
 def do_login():
@@ -41,6 +40,22 @@ def do_login():
     session['user_id'] = user.user_id
     return render_template("javadnd.html") # issue here maybe
 
+@app.route('/login-check.json')
+def login_check_json():
+    email = request.json.get("email")
+    password = request.json.get("password")
+
+    if get_user_by_email(email) is None:
+        return jsonify({'status': 'Email does not exist'})
+    else:
+        if check_user_password_by_email(email,password): #login successful
+            user = get_user_by_email(email)
+            session['user_id'] = user.user_id
+            return render_template("javadnd.ht")
+            # return jsonify({'status': 'Login successful'})
+        else:
+            return jsonify({'status': 'Incorrect Password'})
+ 
 @app.route("/do-signup", methods=['POST'])
 def do_signup():
     """Create User in database from the signup form"""
@@ -110,18 +125,6 @@ def update_trans_cat():
     update_transaction_category(session['user_id'],int(trans_id),category_name)
     
     return jsonify({'status': 'okay'})
-
-
-
-
-
-
-
-
-@app.route("/react")
-def react():
-    data = get_all_user_transactions_json(session['user_id'])
-    return render_template("react.html", data=jsonify(data))
 
 if __name__ == "__main__":
     connect_to_db(app)
