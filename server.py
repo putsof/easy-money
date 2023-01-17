@@ -31,6 +31,12 @@ def login():
     """Displayes the Login page"""
     return render_template("login.html")
 
+@app.route("/logout")
+def logout():
+    """Displayes the Log Out page"""
+    session.pop('user_id', None) # clear the session_id 
+    return render_template("logout.html")
+
 @app.route("/do-login", methods=['POST'])
 def do_login():
     """Log existing user into the application"""

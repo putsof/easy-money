@@ -4,9 +4,9 @@
     gap: 30px;
 }
   
-.category-bucket{
+/* .category-bucket{
     flex-basis: 20%;
-    background: rgb(132, 175, 221);
+    background: #ff9966;
     min-height: 90vh;
     padding: 20px;
     border-radius: 10px;
@@ -15,7 +15,7 @@
     text-align: center;
     font-size: 22px;
     font-style: "Baskerville Roman";
-}
+} */
 .trans-card{
     background: #fff;
     margin: 10px;

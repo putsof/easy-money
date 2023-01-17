@@ -9,13 +9,17 @@
         <link rel="stylesheet" href="/static/index.css">
     </head>
     <header>
-        <nav class="navbar navbar-dark" style="background-color: #024080">
-        <a class="navbar-brand" href="#">
+        <nav class="navbar shadow-sm" style="background-color: #024080">
+        <a class="navbar-brand" href="/">
             <img src="/static//images/easy-money-high-resolution-logo-color-on-transparent-background.png" width="157" height="50" >
         </a>
         <form class="form-inline">
-            <a href="/login" class="btn btn-primary">Log In</a>
-            <a href="/signup" class="btn btn-outline-secondary">Sign Up</a>
+            {% if session['user_id'] is not defined %}
+                <a href="/login" class="btn btn-primary">Log In</a>
+                <a href="/signup" class="btn btn-outline-secondary">Sign Up</a>
+            {% else %}
+                <a href="/logout" class="btn btn-primary">Log Out</a>
+            {% endif %}
         </form>
         </nav>
     </header>

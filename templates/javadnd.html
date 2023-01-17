@@ -8,9 +8,16 @@
 {% endblock %}
 
 {% block content %}
-<div id="container">
-    <div class="category-bucket" id="all-transactions">
-        <h1 id="category-name">All Transactions</h1>
+<div id="container" class="container m-2">
+    <div class="row vh-100" id="cat-col">
+        <div class="col-4 square rounded p-5 m-2 vh-100" style="background-color: #ff9966; overflow-y: scroll;" id="all-transactions">
+            <h1 id="category-name">All Transactions</h1>
+        </div>
+        <div class="col category-bucket">
+            <div class="row vh-100" style="overflow-y: scroll;" id="all-categories">
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

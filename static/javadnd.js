@@ -38,7 +38,7 @@ function dragDrop() {
             'Content-Type': 'application/json',
           },
     })
-    .then((response) => response.json());
-    //.then();
+    .then((response) => response.json())
+    .then((data) => console.log(data));
     this.append(draggedItem); //add to the budget bucket it was dropped in
 }
