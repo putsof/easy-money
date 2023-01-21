@@ -41,4 +41,5 @@ function dragDrop() {
     .then((response) => response.json())
     .then((data) => console.log(data));
     this.append(draggedItem); //add to the budget bucket it was dropped in
+    console.log(this.id);
 }

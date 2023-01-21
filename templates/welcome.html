@@ -4,36 +4,61 @@
    
 
 {% block content %}
-<div class="heroSection" style="background-color: #ff9966">
-    <div class="row">
-        <div class="col">
-            <img src="/static/images/budget_image_one.jpeg" class="img-fluid rounded float-right"> 
+<div class="heroSection vh-100" style="background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);">
+    <div class="container px-0 py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <h1 style="color: #dbe9f4; font-size: 100px;">The <span style="color: #ff9966;">easy</span> way to track your finances</h1>
+                <p style="font-size: 30px;">Stay on top of your budget</p>
+            </div>
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="row align-center">
+                    <img src="/static/images/hero_image.png" class="img-thumbnail">
+                </div> 
+            </div>
         </div>
-        <div class="col">
-            <h1>Take control of your finances</h1>
-        </div>
-    </div>
+    </div>  
 </div>
 
-<div class="m-heroSection-swoop" style="background-color: #ff9966">
+
+<!-- <div class="m-heroSection-swoop" style="background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 158" fill="#ffffff" preserveAspectRatio="none" aria-hidden="true" class="m-heroSection-swoop-image svg-fill-white">
         <path fill="inherit" fill-rule="evenodd" d="M1440 61.151c-37.03 0-175.91-136.612-435.89 0C610.342 268.067 472.905 16.01 0 115.427V-480h1440v638H0v-638h1440V61.15Z">
         </path>
     </svg> 
+</div> -->
+
+<div class="container-fluid" style="background-color:#F7F7F6">
+    <div class="row d-flex justify-content-center align-items-center h-75">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 square rounded p-5">
+            <div class="row align-center">
+                <img src="/static/images/transactions_image.png" class="img-fluid img-thumbnail">
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <h1 style="color: #000851; font-size: 75px;">Budgeting doesnt have to be hard</h1>
+            <p style="font-size: 25px;">With Easy Money, you can see all your transaction in one place</p>
+        </div>
+
+    </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Budgeting doesnt have to be hard</h1>
+<div class="container-fluid" style="background-color:#ff9966;">
+    <div class="row d-flex justify-content-center align-items-center h-75">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <h1 style="color: #000851; font-size: 75px;">Easily categorize all your transactions</h1>
+            <p style="font-size: 20px;">Easy Money utilizes the Plaid API to securely bring in transactions from your bank, credit card or debit card so you can place them into the categories that matter most to you. </p>
         </div>
-        <div class="col">
-            <img src="/static/images/personal-finance-budget-example.png" class="img-fluid rounded float-right" height="200px" width="200px">
+
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 square rounded p-5">
+            <div class="row align-center">
+                <img src="/static/images/keep_track_image.png" class="img-fluid img-thumbnail" height="200px" width="200px">
+            </div>
         </div>
     </div>
 </div>
 
-<div class="heroSection" style="background-color: #b3e6ff">
+<!-- <div class="container-fluid" style="background-color: #eeeeee">
     <div class="row">
         <h1>Save More and Worry Less</h1>
         <p>Follow these three easy steps to simplify tracking your monthly expenses</p>
@@ -49,6 +74,6 @@
             <h2>Classify your transactions</h2>
         </div>
     </div>
+</div> -->
 
-</div>
 {% endblock %}

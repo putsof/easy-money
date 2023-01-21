@@ -4,21 +4,37 @@
    
 
 {% block content %}
-<h1>Here is the sign up page</h1>
+<section class="vh-100" style="background: linear-gradient(0deg, #ff9966 0%, #1CB5E0 100%);">
+    <div class="container h-100" >
+        <div class="row d-flex justify-content-center align-items-center h-100" >
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card text-white" style="border-radius: 25px; background-color: #000851;">
+                    <div class="card-body p-md-5">
+                        <img src="/static/images/easy-money-high-resolution-logo-color-on-transparent-background.png" height="150px" width="471px">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                            <p class="text-center h1 fw-bold mb-5 mx-1 mt-4">Sign up</p>
+                            <form action="/do-signup" method="POST">
+                                <label for="fname">First Name</label>
+                                <input type="text" name="first_name" id="fname">
+                                <br>
+                                <label for="lname">Last Name</label>
+                                <input type="text" name="last_name" id="lname">
+                                <br>
+                                <label for="user_email">Email</label>
+                                <input type="text" name="email" id="user_email">
+                                <br>
+                                <label for="user_password">Password</label>
+                                <input type="password" name="password" id="user_password">
+                                <button type="submit">Submit</button>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</section>
 
-<form action="/do-signup" method="POST">
-    <label for="fname">First Name</label>
-    <input type="text" name="first_name" id="fname">
-    <br>
-    <label for="lname">Last Name</label>
-    <input type="text" name="last_name" id="lname">
-    <br>
-    <label for="user_email">Email</label>
-    <input type="text" name="email" id="user_email">
-    <br>
-    <label for="user_password">Password</label>
-    <input type="text" name="password" id="user_password">
-
-    <button type="submit">Submit</button>
-</form>
 {% endblock %}
