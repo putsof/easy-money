@@ -1,6 +1,5 @@
 # Easy Money
 
-===========
 Learn more about the developer: www.linkedin.com/in/gdele22/
 
 *Easy Money* is a fullstack web application designed to help users manages their finances. Integration of the Plaid API allows users to import transactions from their bank and credit card accounts and place them into user defined categories.
