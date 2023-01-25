@@ -1,6 +1,5 @@
-# easy-money
+# Easy Money
 
-*Easy Money*
 ===========
 Learn more about the developer: www.linkedin.com/in/gdele22/
 
