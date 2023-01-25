@@ -1,6 +1,6 @@
 # easy-money
 
-*¡Vámonos!*
+*Easy Money*
 ===========
 Learn more about the developer: www.linkedin.com/in/gdele22/
 
